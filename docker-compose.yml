@@ -1,0 +1,51 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: userdetails
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: albert
+    networks:
+      - mynetwork
+
+  web:
+    build:
+      context: ./User/user
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./User/user:/app
+      - ./User/user/logs:/app/logs 
+    environment:
+      - DJANGO_SETTINGS_MODULE=user.settings
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  frontend:
+    build:
+      context: ./frontendreact/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - web
+    networks:
+      - mynetwork
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - db
+      - web
+      - frontend
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
