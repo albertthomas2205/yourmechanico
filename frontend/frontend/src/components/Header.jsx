@@ -1,8 +1,18 @@
 import { Box, Flex, HStack, Text, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { clear_Authentication } from '../Redux/user/AuthenticationSlice';  // Adjust the path accordingly
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.authentication_user.isAuthenticated);
+
+  const handleLogout = () => {
+    // Dispatch the clear_Authentication action
+    dispatch(clear_Authentication());
+  };
+
   return (
     <Box
       bg="black"
@@ -34,10 +44,16 @@ const Header = () => {
           <Text color="white">About</Text>
           <Text color="white">Products</Text>
 
-          {/* Use Link component for navigation */}
-          <Link as={RouterLink} to="/b/login" color="white">
-            Login
-          </Link>
+          {/* Conditionally render the Logout button if user is authenticated */}
+          {isAuthenticated ? (
+            <Text onClick={handleLogout} style={{ cursor: 'pointer' }} color="white">
+              Logout
+            </Text>
+          ) : (
+            <Link as={RouterLink} to="/b/login" color="white">
+              Login
+            </Link>
+          )}
 
           <Link as={RouterLink} to="/b/register" color="white">
             Register

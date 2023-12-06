@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'accounts'
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -78,27 +78,27 @@ WSGI_APPLICATION = 'user.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'micro-admin',
-#         'USER': 'postgres',
-#         'PASSWORD': 'albert',
-#         'HOST': 'localhost',  # Set to the PostgreSQL server address
-#         'PORT': '5432',       # Set to the PostgreSQL server port
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'userdetails',
+        'NAME': 'micro-admin',
         'USER': 'postgres',
         'PASSWORD': 'albert',
-        'HOST': 'db',  # Set to the PostgreSQL server address
+        'HOST': 'localhost',  # Set to the PostgreSQL server address
         'PORT': '5432',       # Set to the PostgreSQL server port
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'userdetails',
+#         'USER': 'postgres',
+#         'PASSWORD': 'albert',
+#         'HOST': 'db',  # Set to the PostgreSQL server address
+#         'PORT': '5432',       # Set to the PostgreSQL server port
+#     }
+# }
 
 
 

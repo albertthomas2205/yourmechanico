@@ -1,0 +1,29 @@
+/* Sidebar.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+ 
+  
+  .sidebar {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    min-width: 200px;
+    height: 100%; /* Ensure the sidebar takes up the full height */
+  }
+  
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
